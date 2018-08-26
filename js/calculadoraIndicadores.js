@@ -83,13 +83,13 @@ function formatearNumero(nStr) {
 function invertirValores(){
     var f=document;
     if(f.getElementById("idFlagConversion").value=="1"){
-        f.getElementById("idTituloForm").innerHTML="Calculadora: Pesos a " + f.getElementById("idMoneda").value;
+        f.getElementById("idTituloForm").innerHTML="Pesos a " + f.getElementById("idMoneda").value;
         f.getElementById("idLabelOrigen").innerHTML="Desde Pesos ";
         f.getElementById("idLabelDestino").innerHTML="a " + f.getElementById("idMoneda").value;
         f.getElementById("idFlagConversion").value="2";
         }
     else{
-        f.getElementById("idTituloForm").innerHTML="Calculadora: " + f.getElementById("idMoneda").value + " a Pesos";
+        f.getElementById("idTituloForm").innerHTML=f.getElementById("idMoneda").value + " a Pesos";
         f.getElementById("idLabelOrigen").innerHTML="Desde " + f.getElementById("idMoneda").value;
         f.getElementById("idLabelDestino").innerHTML="a Pesos";
         f.getElementById("idFlagConversion").value="1";
