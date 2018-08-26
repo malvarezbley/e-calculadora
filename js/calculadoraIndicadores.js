@@ -1,43 +1,46 @@
-function selMoneda(tipoMoneda){
-    var f=document;
-    f.getElementById("idMoneda").value=tipoMoneda;
+function selMoneda(tipoMoneda) {
+    var f = document;
+    f.getElementById("idMoneda").value = tipoMoneda;
     f.getElementById("idUF").className="boton-nosel";
     f.getElementById("idDolar").className="boton-nosel";
     f.getElementById("idEuro").className="boton-nosel";
     f.getElementById("idUTM").className="boton-nosel"; 
+    var valorMoneda=0;
     switch (tipoMoneda) {
         case 'UF':
             f.getElementById("idUF").className="boton-sel";
-            var valorMoneda=f.getElementById("idValorUF").value;
+            valorMoneda=f.getElementById("idValorUF").value;
             break;
         case 'Dolar':
             f.getElementById("idDolar").className="boton-sel";
-            var valorMoneda=f.getElementById("idValorDolar").value;
+            valorMoneda=f.getElementById("idValorDolar").value;
             break;
         case 'Euro':
             f.getElementById("idEuro").className="boton-sel";
-            var valorMoneda=f.getElementById("idValorEuro").value;
+            valorMoneda=f.getElementById("idValorEuro").value;
             break;
         case 'UTM':
             f.getElementById("idUTM").className="boton-sel";
-            var valorMoneda=f.getElementById("idValorUTM").value;
+            valorMoneda=f.getElementById("idValorUTM").value;
             break;
         default:
             f.getElementById("idUF").className="boton-sel";
     }
 
+
     if (f.getElementById("idFlagConversion").value=="1"){
-        f.getElementById("idTituloForm").innerHTML="Calculadora: " + tipoMoneda + " a Pesos";
-        f.getElementById("idLabelOrigen").innerHTML="Convertir desde " + tipoMoneda;
-        f.getElementById("idLabelDestino").innerHTML="Pesos";
+        f.getElementById("idTituloForm").innerHTML=tipoMoneda + " a Pesos";
+        f.getElementById("idLabelOrigen").innerHTML="Desde " + tipoMoneda;
+        f.getElementById("idLabelDestino").innerHTML="a Pesos";
     }
     else{
-        f.getElementById("idTituloForm").innerHTML="Calculadora: " + tipoMoneda + " a Pesos";
-        f.getElementById("idLabelOrigen").innerHTML="Convertir desde Pesos";
-        f.getElementById("idLabelDestino").innerHTML=tipoMoneda;
+        f.getElementById("idTituloForm").innerHTML=tipoMoneda + " a Pesos";
+        f.getElementById("idLabelOrigen").innerHTML="Desde Pesos";
+        f.getElementById("idLabelDestino").innerHTML=" a " + tipoMoneda;
     }
-    f.getElementById("idValorMoneda").innerHTML="Valor " + tipoMoneda + ": " + formatearNumero(valorMoneda); 
+    f.getElementById("idLabelValorMoneda").innerHTML="Valor " + tipoMoneda + ": $ " + formatearNumero(valorMoneda); 
     f.getElementById("idValorMonedaSel").value=valorMoneda;
+
     calculaValor();
 
 } 
@@ -67,9 +70,9 @@ function calculaValor(){
             
 function formatearNumero(nStr) {
     nStr += '';
-    x = nStr.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? ',' + x[1] : '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? ',' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
             x1 = x1.replace(rgx, '$1' + '.' + '$2');
@@ -81,18 +84,18 @@ function invertirValores(){
     var f=document;
     if(f.getElementById("idFlagConversion").value=="1"){
         f.getElementById("idTituloForm").innerHTML="Calculadora: Pesos a " + f.getElementById("idMoneda").value;
-        f.getElementById("idLabelOrigen").innerHTML="Convertir desde Pesos ";
-        f.getElementById("idLabelDestino").innerHTML=f.getElementById("idMoneda").value;
+        f.getElementById("idLabelOrigen").innerHTML="Desde Pesos ";
+        f.getElementById("idLabelDestino").innerHTML="a " + f.getElementById("idMoneda").value;
         f.getElementById("idFlagConversion").value="2";
         }
     else{
         f.getElementById("idTituloForm").innerHTML="Calculadora: " + f.getElementById("idMoneda").value + " a Pesos";
-        f.getElementById("idLabelOrigen").innerHTML="Convertir desde " + f.getElementById("idMoneda").value;
-        f.getElementById("idLabelDestino").innerHTML="Pesos";
+        f.getElementById("idLabelOrigen").innerHTML="Desde " + f.getElementById("idMoneda").value;
+        f.getElementById("idLabelDestino").innerHTML="a Pesos";
         f.getElementById("idFlagConversion").value="1";
     }
 
-    str=f.getElementById("idValorOutput").value;
+    var str=f.getElementById("idValorOutput").value;
     var Re = RegExp("\\.", "g");
     str=str.replace(Re,"");
     str=str.replace(",","");

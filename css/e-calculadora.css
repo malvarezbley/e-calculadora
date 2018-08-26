@@ -4,51 +4,36 @@
 
 body{
     margin: 0;
-    padding: 0;
+    padding: 7px;
     font-family: sans-serif;
     background: #204862;
 }
 
-h1{
-    width: 80%;
+.titulo-contenedor{
+    background: red;
     margin: auto;
-    padding: 8px;
+    width: 100%;
+    max-width: 800px;
     color:#fff;
-    text-align: center;
-    font-size: 25px;
-}
-
-h4{
-    width: 65%;
-    color:#fff;
-    margin: auto;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 100;
     padding: 7px;
-}
-
-
-.nav-menu{
-    width: 80%;
-    height: 50px;
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    border-radius: 7px;
-    padding: 10px;
     text-align: center;
+    font-weight: 100px;
+    font-size: 20px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom: 5px solid black;
 }
 
-.nav-label{
-    font-size:14px;
-    width: 20%;
-    float:left;
+.label-indicadores{
+    font-size: 16px;
 }
 
-.nav-botones{
-    width: 80%;
-    float: right;
+.label-moneda{
+    padding-left: 10px;
+}
+
+nav{
+    text-align: center;
 }
 
 .boton-nosel{
@@ -58,12 +43,14 @@ h4{
 	display: inline-block;
 	text-decoration: none;
 	width: 100px;
+    text-align: center;
     border-radius: 7px;
 }
 .boton-nosel:hover{
 	background:red;
+    text-decoration: none;
+    color:white;
 }
-
 
 .boton-sel{
 	background:red;
@@ -71,49 +58,63 @@ h4{
 	padding: 6px 8px;
 	display: inline-block;
 	text-decoration: none;
+    text-align: center;
 	width: 100px;
     border-radius: 7px;
 }
 
 
 .form-calculadora{
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
     margin: auto;
     background: white;
     border-radius: 7px;
 }
 
+.contenedor-calculadora{
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;    
+}
+
+
+
+
 .form-titulo{
     background: red;
+    width: 90%;
     color:#fff;
     padding: 7px;
     text-align: center;
-    font-weight: 100;
+    font-weight: 100px;
     font-size: 20px;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
     border-bottom: 5px solid black;
 }
 
+/*
 .form-contenedor-input{
     padding: 10px 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
+} */
 
 .form-label{
-    width: 40%;
+    width: 100%;
 }
 
 .form-texto{
-    padding: 10px 50px;
+    padding: 10px 10px;
 
 }
 
 .form-input{
-    width: 60%;
+    width: 100%;
     margin-bottom: 15px;
     padding: 10px;
     font-size: 16px;
@@ -138,7 +139,7 @@ h4{
 
 footer{
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     margin: auto;
     text-align: center;
     font-size: 12px;
@@ -147,42 +148,48 @@ footer{
 }
 
 .footer-visitas{
-    width: 10%;
-    margin: auto;
     float: left;
     text-align: left;
     font-size: 12px;
-    padding: 10px;
+    padding-left: 20px;
     color:white;
 }
 
 
 .footer-derechos{
-    width: 90%;
-    margin: auto;
     float: right;
     text-align: right;
     font-size: 12px;
-    padding: 10px;
+    padding-right: 20px;
     color:white;
 }
 
+
+
+
+
+
+
 @media screen and (max-width:720px){
+    
+    
+.label-indicadores{
+    font-size: 12px;
+    align-content: center:
+}
+    
+.label-moneda{ 
+    font-size: 10px;
+}
+    
+    
+.titulo-contenedor{
+    font-size: 16px;
+}    
 
     .form-label{
         width: 80%;
     }   
-
-    .nav-menu{
-        width: 80%;
-        height: 80px;
-        max-width: 600px;
-        margin: auto;
-        background: white;
-        border-radius: 7px;
-        padding: 10px;
-        text-align: center;
-    }
 
     .nav-label{
         font-size:14px;
@@ -196,39 +203,12 @@ footer{
 
     }  
 
-    footer{
-        width: 80%;
-        margin: auto;
-
-        font-size: 12px;
-        padding: 10px;
-        color:white;
-        }    
-
-
-    h4{
-       line-height: 20px;
-        text-align: left;
-        width: 80%;    
-     }    
-
     .boton-nosel{
-        padding: 0;
-        display: inline-block;
-        text-decoration: none;
-        width: 100px;
-        height: 30px;
-        line-height: 40px;
-
+        width: 60px;
     }
 
     .boton-sel{
-        padding: 0;
-        display: inline-block;
-        width: 100px;
-        height: 30px;
-        line-height: 40px;
-
+        width: 60px;
     }
 
 }
