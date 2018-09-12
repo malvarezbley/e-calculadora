@@ -96,12 +96,12 @@ function buscaIndicadoresLocales(){
             if ($diaActual==$fecha){
                 $retorno[0][1]=$dolar;
                 $retorno[0][2]=$fecha;
-                $retorno[1][1]=$uf;
+                $retorno[1][1]=$euro;
                 $retorno[1][2]=$fecha;
-                $retorno[2][1]=$euro;
-                $retorno[2][1]=$fecha;
+                $retorno[2][1]=$uf;
+                $retorno[2][2]=$fecha;
                 $retorno[3][1]=$utm;
-                $retorno[3][1]=$fecha;
+                $retorno[3][2]=$fecha;
             }
         }
     }
@@ -115,7 +115,7 @@ function verificaArchivoIndicadoresLocal(){
     if(!file_exists($archivoLocal)) {
         //crea archivo anual.
         $arch=fopen($archivoLocal, 'a');
-        $titulo="FECHA|VALOR UF|VALOR DOLAR|VALOR EURO|VALOR UTM\n";
+        $titulo="FECHA|VALOR UF|VALOR DOLAR|VALOR EURO|VALOR UTM|FECHA-HORA REG\n";
         fwrite($arch, $titulo);
         fclose($arch);
     }
@@ -125,11 +125,12 @@ function verificaArchivoIndicadoresLocal(){
 
 function guardaIndicadores($iFecha, $iValorDolar, $iValorEuro, $iValorUF, $iValorUTM){
     $anno=date("Y");
+    $fechaHora=date("d-m-y H:i:s");
     $archivoLocal="./indicadores_" . $anno . ".txt";
     if(file_exists($archivoLocal)) {
         //crea archivo anual.
         $arch=fopen($archivoLocal, 'a');
-        $registro=$iFecha . "|" . $iValorUF . "|" . $iValorDolar . "|" . $iValorEuro . "|" . $iValorUTM . "\n";
+        $registro=$iFecha . "|" . $iValorUF . "|" . $iValorDolar . "|" . $iValorEuro . "|" . $iValorUTM . "|" . $fechaHora . "\n";
         fwrite($arch, $registro);
         fclose($arch);
     }
