@@ -3,26 +3,71 @@
   Programa          : Calculadora de Indicadores Economicos
   Autor             : Mauricio Álvarez Bley
   Fecha             : 10-08-2018
-  Ult.Modificación  : 25-08-2018
+  Ult.Modificación  : 11-09-2018
   Versión           : 1.2
   */
 
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 include "funciones.php";  
 $versionCalculadora="1.2";
-$xml=traeIndicadores();
-$valorDolar= $xml->moneda->dolar;
-$valorUTM=$xml->moneda->utm;   
-$valorUF=$xml->indicador->uf;
-$valorEuro=$xml->moneda->euro;      
+verificaArchivoIndicadoresLocal();
+$fechaIndicadores=date("d-m-Y");
+$forzarActualizacion="no";
+if(isset($_GET['act']))
+    $forzarActualizacion=$_GET['act'];
+
+if (! existenIndicadores() || $forzarActualizacion=="si"){
+    //Consulta los indicadores desde los servicios remotos
+    $xml=traeIndicadores_SBIF();
+    //$xml=traeIndicadores_BCentral();
+    //$xml=traeIndicadores_Indicadores();
+
+    $valorDolar=$xml[0][1];
+    $valorEuro=$xml[1][1];      
+    $valorUF=$xml[2][1];
+    $valorUTM=$xml[3][1];   
+
+    $fechaDolar=$xml[0][2];
+    $fechaEuro=$xml[1][2];
+    $fechaUF=$xml[2][2];
+    $fechaUTM=$xml[3][2];
+    
+    guardaIndicadores($fechaIndicadores, $valorDolar, $valorEuro, $valorUF, $valorUTM);
+}
+else{
+    //Rescata los indicadores almacenados localmente
+    $ind=buscaIndicadoresLocales();
+
+    $valorDolar=$ind[0][1];
+    $valorEuro=$ind[1][1];      
+    $valorUF=$ind[2][1];
+    $valorUTM=$ind[3][1];   
+
+    $fechaDolar=$ind[0][2];
+    $fechaEuro=$ind[1][2];
+    $fechaUF=$ind[2][2];
+    $fechaUTM=$ind[3][2];
+}
+
 
 $valorDolarFormateado=cambiaFormato($valorDolar);
 $valorUTMFormateado=cambiaFormato($valorUTM);
 $valorUFFormateado=cambiaFormato($valorUF);
 $valorEuroFormateado=cambiaFormato($valorEuro);
 $fechaVisita =date("d-m-y");   
+
+
+if($valorDolar=="0")
+    $valorDolar="No Disponible";
+if($valorEuro=="0")
+    $valorEuro="No Disponible";
+if($valorUF=="0")
+    $valorUF="No disponible";
+if($valorUTM=="0")
+    $valorUTM="No disponoble";
+
 $labelIndicadores="Fecha: $fechaVisita UF:$ $valorUF  | UTM:$  $valorUTM  | Dólar:$  $valorDolar  | Euro:$ $valorEuro"; 
 registraVisita();
 
@@ -112,7 +157,7 @@ registraVisita();
                       V#:<?php echo totalVisitasCalculadora(); ?>      
                     </div>
                     <div class="col footer-derechos">
-                      Versión <?php echo $versionCalculadora . " - "; ?> Todos los derechos reservados: Mabley.cl
+                      Versión <?php echo $versionCalculadora . " - "; ?> Todos los derechos reservados: Mabley.cl (Fuente:SBIF)
                     </div>
                 </div>
           </footer>

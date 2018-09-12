@@ -52,6 +52,13 @@ nav{
     color:white;
 }
 
+.boton-nosel:activate{
+	background:red;
+    text-decoration: none;
+    color:white;
+}
+
+
 .boton-sel{
 	background:red;
 	color: #fff;

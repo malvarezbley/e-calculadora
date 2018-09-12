@@ -1,0 +1,64 @@
+[14-Aug-2018 09:35:27 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[14-Aug-2018 09:35:28 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[14-Aug-2018 09:35:55 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[14-Aug-2018 09:35:56 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[14-Aug-2018 09:36:05 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[14-Aug-2018 09:36:06 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[14-Aug-2018 09:44:40 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[14-Aug-2018 09:44:41 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[14-Aug-2018 09:46:31 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[14-Aug-2018 09:46:31 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[15-Aug-2018 16:44:55 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[15-Aug-2018 16:44:56 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[18-Aug-2018 00:03:23 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[18-Aug-2018 00:03:24 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[18-Aug-2018 19:03:21 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[18-Aug-2018 19:03:22 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[18-Aug-2018 19:55:58 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[18-Aug-2018 19:55:58 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[18-Aug-2018 23:13:26 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[18-Aug-2018 23:13:27 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[19-Aug-2018 00:03:47 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[19-Aug-2018 00:03:47 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[19-Aug-2018 16:09:42 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[19-Aug-2018 16:09:43 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[19-Aug-2018 17:01:26 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[19-Aug-2018 17:01:27 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[19-Aug-2018 22:36:57 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[19-Aug-2018 22:36:58 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[25-Aug-2018 15:08:35 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[25-Aug-2018 15:08:36 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
+[25-Aug-2018 19:24:29 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 67
+[25-Aug-2018 19:24:30 America/New_York] PHP Warning:  simplexml_load_file(http://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&amp;formato=xml): failed to open stream: HTTP request failed! HTTP/1.1 404 No Encontrado
+ in /home/mableycl/public_html/calculadora/calculadoraIndicadores.php on line 68
