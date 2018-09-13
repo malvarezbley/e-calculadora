@@ -1,0 +1,7 @@
+<form oninput="resultado.value=parseInt(campo1.value) + parseInt(campo2.value)">
+
+   <input type="number" id="campo1" value=""> +
+   <input type="number" id="campo2" value=""> =
+   <output name="resultado" for=" campo1 campo2 "></output>
+
+</form>

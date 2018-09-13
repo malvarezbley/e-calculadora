@@ -96,12 +96,12 @@ function buscaIndicadoresLocales(){
             if ($diaActual==$fecha){
                 $retorno[0][1]=$dolar;
                 $retorno[0][2]=$fecha;
-                $retorno[1][1]=$uf;
+                $retorno[1][1]=$euro;
                 $retorno[1][2]=$fecha;
-                $retorno[2][1]=$euro;
-                $retorno[2][1]=$fecha;
+                $retorno[2][1]=$uf;
+                $retorno[2][2]=$fecha;
                 $retorno[3][1]=$utm;
-                $retorno[3][1]=$fecha;
+                $retorno[3][2]=$fecha;
             }
         }
     }
@@ -115,7 +115,7 @@ function verificaArchivoIndicadoresLocal(){
     if(!file_exists($archivoLocal)) {
         //crea archivo anual.
         $arch=fopen($archivoLocal, 'a');
-        $titulo="FECHA|VALOR UF|VALOR DOLAR|VALOR EURO|VALOR UTM\n";
+        $titulo="FECHA|VALOR UF|VALOR DOLAR|VALOR EURO|VALOR UTM|FECHA-HORA REG\n";
         fwrite($arch, $titulo);
         fclose($arch);
     }
@@ -125,11 +125,12 @@ function verificaArchivoIndicadoresLocal(){
 
 function guardaIndicadores($iFecha, $iValorDolar, $iValorEuro, $iValorUF, $iValorUTM){
     $anno=date("Y");
+    $fechaHora=date("d-m-y H:i:s");
     $archivoLocal="./indicadores_" . $anno . ".txt";
     if(file_exists($archivoLocal)) {
         //crea archivo anual.
         $arch=fopen($archivoLocal, 'a');
-        $registro=$iFecha . "|" . $iValorUF . "|" . $iValorDolar . "|" . $iValorEuro . "|" . $iValorUTM . "\n";
+        $registro=$iFecha . "|" . $iValorUF . "|" . $iValorDolar . "|" . $iValorEuro . "|" . $iValorUTM . "|" . $fechaHora . "\n";
         fwrite($arch, $registro);
         fclose($arch);
     }
@@ -220,21 +221,11 @@ function traeIndicadores_BCentral(){
     libxml_use_internal_errors(true);
     
     
-    /*$xmlSourceDolar="https://api.sbif.cl/api-sbifv3/recursos_api/dolar?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&formato=xml";
-    $xmlSourceEuro="https://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&formato=xml";
-    $xmlSourceUF="https://api.sbif.cl/api-sbifv3/recursos_api/uf?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&formato=xml";
-    $xmlSourceUTM="https://api.sbif.cl/api-sbifv3/recursos_api/utm?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&formato=xml";
-    $xmlRespuestaDolar = simplexml_load_file($xmlSourceDolar);
-    $xmlRespuestaEuro = simplexml_load_file($xmlSourceEuro);
-    $xmlRespuestaUF = simplexml_load_file($xmlSourceUF);
-    $xmlRespuestaUTM = simplexml_load_file($xmlSourceUTM);
-    
-    */
-    
-    
     ///////////////////////////////////////////////////
     //Fuente Banco Central
     ///////////////////////////////////////////////////
+    
+    // En construcción
     
     $user='103333237';
     $password='byF853O0';

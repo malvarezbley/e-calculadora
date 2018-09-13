@@ -1,0 +1,47 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="css/ejemplo_botones.css">
+	<script type="text/javascript">
+		
+		function selMoneda(valorMoneda){
+			document.getElementById("idMoneda").value=valorMoneda;
+
+			document.getElementById("idUF").className="boton-nosel";
+			document.getElementById("idDolar").className="boton-nosel";
+			document.getElementById("idEuro").className="boton-nosel";
+			document.getElementById("idUTM").className="boton-nosel"; 
+			
+
+			switch (valorMoneda) {
+				case 'UF':
+					document.getElementById("idUF").className="boton-sel";
+					break;
+				case 'Dolar':
+					document.getElementById("idDolar").className="boton-sel";
+					break;
+				case 'Euro':
+					document.getElementById("idEuro").className="boton-sel";
+					break;
+				case 'UTM':
+					document.getElementById("idUTM").className="boton-sel";
+					break;
+				default:
+					document.getElementById("idUF").className="boton-sel";
+			}
+			//alert(document.getElementById("idMoneda").value);
+		}
+	</script>
+
+
+</head>
+<body>
+	<input type="hidden" name="hidMoneda" value="UF" id="idMoneda">
+	<input type="hidden" name="hidValorMoneda" value="" id="idValorMoneda">
+	<a href="#" onclick="selMoneda('UF');"    class="boton-nosel" id="idUF" > UF </a>
+	<a href="#" onclick="selMoneda('Dolar');" class="boton-nosel" id="idDolar"> Dolar</a>
+	<a href="#" onclick="selMoneda('Euro');"  class="boton-nosel" id="idEuro"> Euro</a>
+	<a href="#" onclick="selMoneda('UTM');"   class="boton-nosel" id="idUTM"> UTM</a>
+</body>
+
+</html>

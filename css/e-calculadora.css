@@ -52,11 +52,17 @@ nav{
     color:white;
 }
 
-.boton-nosel:activate{
-	background:red;
-    text-decoration: none;
-    color:white;
+.boton-nosel:active{
+	transform:escale(0.5);
+	width: 50px;
+	height: 35px;
 }
+
+.boton-sel:hover{
+	text-decoration: none;
+	color:white;
+}
+
 
 
 .boton-sel{
@@ -70,6 +76,11 @@ nav{
     border-radius: 7px;
 }
 
+/*.boton-sel:active{
+	background:red;
+    text-decoration: none;
+    color:white;
+}*/
 
 .form-calculadora{
     width: 100%;

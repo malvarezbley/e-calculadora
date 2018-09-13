@@ -3,15 +3,15 @@
   Programa          : Calculadora de Indicadores Economicos
   Autor             : Mauricio Álvarez Bley
   Fecha             : 10-08-2018
-  Ult.Modificación  : 11-09-2018
-  Versión           : 1.2
+  Ult.Modificación  : 13-09-2018
+  Versión           : 1.3
   */
 
 //error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 include "funciones.php";  
-$versionCalculadora="1.2";
+$versionCalculadora="1.3";
 verificaArchivoIndicadoresLocal();
 $fechaIndicadores=date("d-m-Y");
 $forzarActualizacion="no";
