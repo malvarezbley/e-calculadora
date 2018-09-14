@@ -118,6 +118,9 @@ registraVisita();
                        <input type="hidden" name="hidFlagConversion" value="1" id="idFlagConversion">    
                        <label id="idTituloForm">UF a Pesos</label>-->
                        <label id="idLabelValorMoneda">Valor UF: $ <?php echo $valorUF; ?></label>
+                        <button type="button" class="btn-intercambio" onclick="invertirValores()" >
+                               <img src="imagenes/intercambio4.png" width="25">
+                        </button>
                         <div class="row">  
                             <div class="col-sm-2">
                              <label id="idLabelOrigen">Desde UF</label>
@@ -141,12 +144,14 @@ registraVisita();
                                 step="any"
                                 readonly
                                 name="valorOutput" >
+                                
+                                <input type="checkbox" checked> Redondear resultado
                             </div>
-                            <div class="col-sm-2">
+                            <!-- <div class="col-sm-2">
                              <button type="button" class="btn-intercambio" onclick="invertirValores()" >
                                <img src="imagenes/intercambio4.png" width="35">
                              </button>
-                            </div>
+                            </div> -->
                         </div>        
                     </form>            
                 </section>
@@ -157,7 +162,7 @@ registraVisita();
                       V#:<?php echo totalVisitasCalculadora(); ?>      
                     </div>
                     <div class="col footer-derechos">
-                      Versión <?php echo $versionCalculadora . " - "; ?> Todos los derechos reservados: Mabley.cl (Fuente:SBIF)
+                      Versión <?php echo $versionCalculadora . " - "; ?> Mabley.cl (Fuente:SBIF)
                     </div>
                 </div>
           </footer>
