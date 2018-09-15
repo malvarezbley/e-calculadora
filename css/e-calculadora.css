@@ -36,6 +36,11 @@ nav{
     text-align: center;
 }
 
+hr{
+    border: auto;
+    padding: 0px;
+}
+
 .boton-nosel{
 	background:#0F80FF;
 	color: #fff;
@@ -81,6 +86,11 @@ nav{
     text-decoration: none;
     color:white;
 }*/
+
+
+.tituloForm{
+    border: 0px;
+}
 
 .form-calculadora{
     width: 100%;

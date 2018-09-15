@@ -116,7 +116,7 @@ registraVisita();
                        <input type="hidden" name="hidValorUTM" value="<?php echo $valorUTMFormateado; ?>" id="idValorUTM">
                        <input type="hidden" name="hidValorMonedaSeleccionada" value="<?php echo $valorUFFormateado; ?>" id="idValorMonedaSel">
                        <input type="hidden" name="hidFlagConversion" value="1" id="idFlagConversion">    
-                       <label id="idTituloForm">UF a Pesos</label>-->
+                       <label id="idTituloForm">UF a Pesos</label class="tituloForm">-->
                        <label id="idLabelValorMoneda">Valor UF: $ <?php echo $valorUF; ?></label>
                         <button type="button" class="btn-intercambio" onclick="invertirValores()" >
                                <img src="imagenes/intercambio4.png" width="25">
