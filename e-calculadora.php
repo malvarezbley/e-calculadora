@@ -11,7 +11,7 @@
 ini_set('display_errors', '1');
 
 include "funciones.php";  
-$versionCalculadora="1.3";
+$versionCalculadora="1.4";
 verificaArchivoIndicadoresLocal();
 $fechaIndicadores=date("d-m-Y");
 $forzarActualizacion="no";
