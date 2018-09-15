@@ -54,20 +54,31 @@ function registraVisita(){
 
 
 function existenIndicadores(){
+    /*
+    Valores de retorno:
+    0 = No Existen indicadores para el dia consultado
+    1 = Existen indicadores para el dia consulado
+    2 = Solo existen algunos indicaores
+    */
     $anno=date("Y");
     $archivoLocal="./indicadores_" . $anno . ".txt";
     $diaActual=date("d-m-Y");
     $arch=fopen($archivoLocal, 'r+');
-    $retorno=false;
+    $retorno=0;
     while (!feof($arch)){
         $reg=fgets($arch);
         if(strlen($reg)>0){
             list($fecha, $uf, $dolar, $euro, $utm) = explode('|', $reg);
-            if ($diaActual==$fecha)
-                $retorno=true;
+            if ($diaActual==$fecha){
+                if ($uf!="0" && $dolar!="0" && $euro!="0" && $utm!="0")
+                    $retorno=1;
+                else
+                    $retorno=2;
+
+            }
+            
         }
     }
-    //exit;
     fclose($arch);
     return $retorno;
 }

@@ -36,10 +36,6 @@ nav{
     text-align: center;
 }
 
-hr{
-    border: auto;
-    padding: 0px;
-}
 
 .boton-nosel{
 	background:#0F80FF;
@@ -87,9 +83,22 @@ hr{
     color:white;
 }*/
 
+.hr {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid gray;
+    width: 100%;
+}
+
+
 
 .tituloForm{
-    border: 0px;
+    border-top:  1px;
+    padding-top: 1px;
+}
+
+
+    
 }
 
 .form-calculadora{
@@ -97,6 +106,7 @@ hr{
     margin: auto;
     background: white;
     border-radius: 7px;
+    padding-top: 0px;
 }
 
 .contenedor-calculadora{

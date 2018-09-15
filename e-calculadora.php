@@ -4,7 +4,11 @@
   Autor             : Mauricio Álvarez Bley
   Fecha             : 10-08-2018
   Ult.Modificación  : 13-09-2018
-  Versión           : 1.3
+  Versión           : 1.4
+  
+  Parametros: Si se utiliza el parametro "act=si" mediante metodo GET, se fuerza a la actualización de los datos
+  Ejemplo: www.mabley.cl/calculadora/e-calculadora.php?act=si
+  
   */
 
 //error_reporting(E_ALL);
@@ -18,7 +22,7 @@ $forzarActualizacion="no";
 if(isset($_GET['act']))
     $forzarActualizacion=$_GET['act'];
 
-if (! existenIndicadores() || $forzarActualizacion=="si"){
+if (existenIndicadores()!=1 || $forzarActualizacion=="si"){
     //Consulta los indicadores desde los servicios remotos
     $xml=traeIndicadores_SBIF();
     //$xml=traeIndicadores_BCentral();
@@ -82,7 +86,7 @@ registraVisita();
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="css/e-calculadora.css">  
-        <script src="js/calculadoraIndicadores.js"></script>
+        <script src="js/e-calculadora.js"></script>
     </head>
     <body>
         <h1 class="titulo-contenedor">Calculadora de Indicadores Económicos</h1>
@@ -104,7 +108,6 @@ registraVisita();
                             </nav>    
                         </div>
                     </div>
-                    <hr>
                 </header>
                 <section>
                     <form>
@@ -116,7 +119,8 @@ registraVisita();
                        <input type="hidden" name="hidValorUTM" value="<?php echo $valorUTMFormateado; ?>" id="idValorUTM">
                        <input type="hidden" name="hidValorMonedaSeleccionada" value="<?php echo $valorUFFormateado; ?>" id="idValorMonedaSel">
                        <input type="hidden" name="hidFlagConversion" value="1" id="idFlagConversion">    
-                       <label id="idTituloForm">UF a Pesos</label class="tituloForm">-->
+                       <div class="hr"></div>
+                       <label id="idTituloForm" class="tituloForm">UF a Pesos</label >-->
                        <label id="idLabelValorMoneda">Valor UF: $ <?php echo $valorUF; ?></label>
                         <button type="button" class="btn-intercambio" onclick="invertirValores()" >
                                <img src="imagenes/intercambio4.png" width="25">
@@ -145,13 +149,9 @@ registraVisita();
                                 readonly
                                 name="valorOutput" >
                                 
-                                <input type="checkbox" checked> Redondear resultado
+                                <!-- <input type="checkbox" checked> Redondear resultado -->
                             </div>
-                            <!-- <div class="col-sm-2">
-                             <button type="button" class="btn-intercambio" onclick="invertirValores()" >
-                               <img src="imagenes/intercambio4.png" width="35">
-                             </button>
-                            </div> -->
+
                         </div>        
                     </form>            
                 </section>
