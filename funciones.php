@@ -163,7 +163,14 @@ function traeIndicadores_SBIF(){
     $xmlSourceEuro="https://api.sbif.cl/api-sbifv3/recursos_api/euro?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&formato=xml";
     $xmlSourceUF="https://api.sbif.cl/api-sbifv3/recursos_api/uf?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&formato=xml";
     $xmlSourceUTM="https://api.sbif.cl/api-sbifv3/recursos_api/utm?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&formato=xml";
-    $xmlRespuestaDolar = simplexml_load_file($xmlSourceDolar);
+    $xmlRespuestaDolar = simplexml_load_file($xmlSourceDolar, 'SimpleXMLElement', LIBXML_NOWARNING);
+    if($xmlRespuestaDolar->CodigoHTTP=="404"){
+        echo "Indicador no encontrado";
+    
+    exit;
+    }
+    
+
     $xmlRespuestaEuro = simplexml_load_file($xmlSourceEuro);
     $xmlRespuestaUF = simplexml_load_file($xmlSourceUF);
     $xmlRespuestaUTM = simplexml_load_file($xmlSourceUTM);
@@ -172,38 +179,17 @@ function traeIndicadores_SBIF(){
     
     if($xmlRespuestaDolar->Dolares->Dolar->Valor==""){
         $xmlRespuesta[0][1]="0";
-        echo $xmlRespuesta[0][1] . "<br>";
-        
-        
-        //////////////////////////////////////////////
-        //Busca el mes completo. EN CONSTRUCCION
-        //////////////////////////////////////////////
-        $mesBuscado=date("m");
-        $annoBuscado=date("Y");
-        $xmlSourceDolarMes="https://api.sbif.cl/api-sbifv3/recursos_api/uf/2018/08?apikey=3c3637632fa57cf2f1f093dd2c2a5213f86f0a23&formato=xml";
-        $xmlRespuestaDolarMes=simplexml_load_file($xmlSourceDolarMes);   
-        
-        $ultDol="0";
-        $ultFec="0";
-        $cont=0;
-        foreach ($xmlRespuestaDolarMes->Dolares->Dolar as $dolar){
-            $ultFec= $dolar->Fecha;
-            $ultDol= $dolar->Valor;
-            $cont++;
+        //$xmlRespuesta[0][1]="682,79";
         }
-        echo $ultDol . " " . $ultFec . " " . $cont . "<br>";
-        
-        
-        //exit();
-            
-    }
     else{
         $xmlRespuesta[0][1]=$xmlRespuestaDolar->Dolares->Dolar->Valor;
         $xmlRespuesta[0][2]=$xmlRespuestaDolar->Dolares->Dolar->Fecha;
     }
     
-    if($xmlRespuestaEuro->Euros->Euro->Valor=="")
+    if($xmlRespuestaEuro->Euros->Euro->Valor==""){
         $xmlRespuesta[1][1]="0";
+        //$xmlRespuesta[1][1]="797,75";
+    }
     else{
         $xmlRespuesta[1][1]=$xmlRespuestaEuro->Euros->Euro->Valor;
         $xmlRespuesta[1][2]=$xmlRespuestaEuro->Euros->Euro->Fecha;
@@ -223,7 +209,52 @@ function traeIndicadores_SBIF(){
         $xmlRespuesta[3][2]=$xmlRespuestaUTM->UTMs->UTM->Fecha;
     }
     
-    
+    if($xmlRespuesta[0][1]=="0" || $xmlRespuesta[1][1]=="0" || $xmlRespuesta[2][1]=="0" || $xmlRespuesta[3][1]=="0" ) {
+        /**************************************************************** 
+        * No enontró todos los indicadores.                             *
+        * Busca el ultimo dia completo, con todos los indicadores       *
+        ************************************************************** */
+        $archivoUltimoCompleto="./ultimosIndicadoresCompletos.txt";    
+        $arch2=fopen($archivoUltimoCompleto, 'r+');
+        $reg0=fgets($arch2);
+        $reg=fgets($arch2);
+        list($uFechaDolar, $uValorDolar, $uFechaEuro, $uValorEuro, $uFechaUF, $uValorUF, $uFechaUTM, $uValorUTM, $fechaHora) = explode("|", $reg);
+        
+        if ($xmlRespuesta[0][1]=="0") {  //Dolar
+            $xmlRespuesta[0][1]=$uValorDolar;
+            $xmlRespuesta[0][2]=$uFechaDolar;
+        }
+        
+        if($xmlRespuesta[1][1]=="0") {  //Euro
+            $xmlRespuesta[1][1]=$uValorEuro;
+            $xmlRespuesta[1][2]=$uFechaEuro;
+
+        }
+        if($xmlRespuesta[2][1]=="0"){ //UF
+            $xmlRespuesta[2][1]=$uValorUF;
+            $xmlRespuesta[2][2]=$uFechaUF;
+        }
+        if($xmlRespuesta[3][1]=="0"){ //UTM   
+            $xmlRespuesta[3][1]=$uValorUTM;
+            $xmlRespuesta[3][2]=$uFechaUTM;
+        }
+        fclose($arch2);
+    }
+    else{
+        /**************************************************************** 
+        * Enontró todos los indicadores.                                *
+        * Guarda los valores en un archivo                              *
+        ************************************************************** */   
+        $archivoUltimoCompleto="./ultimosIndicadoresCompletos.txt";  
+        $arch=fopen($archivoUltimoCompleto, 'w');
+        $fechaHora=date("d-m-y H:i:s");
+        $fechaHoy=date("d-m-Y");
+        $titulo="FECHA DOLAR|VALOR DOLAR|FECHA EURO|VALOR EURO|FECHA UF|VALOR UF|FECHA UTM|VALOR UTM|FECHA-HORA REG\n";
+        $registro=$fechaHoy . "|" . $xmlRespuesta[0][1] . "|" . $fechaHoy . "|" . $xmlRespuesta[1][1] . "|" . $fechaHoy . "|" . $xmlRespuesta[2][1] . "|" . $fechaHoy . "|" . $xmlRespuesta[3][1] . "|"  . $fechaHora . "\n";
+        fwrite($arch, $titulo);
+        fwrite($arch, $registro);
+        fclose($arch);
+    }        
     return $xmlRespuesta;
 }
 

@@ -11,8 +11,8 @@
   
   */
 
-//error_reporting(E_ALL);
-ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
 
 include "funciones.php";  
 $versionCalculadora="1.4";
@@ -37,8 +37,25 @@ if (existenIndicadores()!=1 || $forzarActualizacion=="si"){
     $fechaEuro=$xml[1][2];
     $fechaUF=$xml[2][2];
     $fechaUTM=$xml[3][2];
+
+    $valorDolarGuardar=$valorDolar;
+    $valorEuroGuardar=$valorEuro;      
+    $valorUFGuardar=$valorUF;
+    $valorUTMGuardar=$valorUTM;   
     
-    guardaIndicadores($fechaIndicadores, $valorDolar, $valorEuro, $valorUF, $valorUTM);
+    
+    if($fechaIndicadores!=$fechaDolar)   {
+        $dolarEsDiaAnterior=true;
+        $valorDolarGuardar="0";
+    }
+    if($fechaIndicadores!=$fechaEuro){
+        $euroEsDiaAnterior=true;
+        $valorEuroGuardar="0";
+    }
+    
+    
+    //guardaIndicadores($fechaIndicadores, $valorDolar, $valorEuro, $valorUF, $valorUTM);
+    guardaIndicadores($fechaIndicadores, $valorDolarGuardar, $valorEuroGuardar, $valorUFGuardar, $valorUTMGuardar);
 }
 else{
     //Rescata los indicadores almacenados localmente
@@ -53,6 +70,7 @@ else{
     $fechaEuro=$ind[1][2];
     $fechaUF=$ind[2][2];
     $fechaUTM=$ind[3][2];
+
 }
 
 
@@ -63,16 +81,17 @@ $valorEuroFormateado=cambiaFormato($valorEuro);
 $fechaVisita =date("d-m-y");   
 
 
-if($valorDolar=="0")
-    $valorDolar="No Disponible";
-if($valorEuro=="0")
-    $valorEuro="No Disponible";
-if($valorUF=="0")
-    $valorUF="No disponible";
-if($valorUTM=="0")
-    $valorUTM="No disponoble";
+$labelIndicadores="Día " . $fechaVisita . "." ;
+$labelIndicadores=$labelIndicadores . " UF:$" . $valorUF;
+$labelIndicadores=$labelIndicadores . "| UTM:$" .  $valorUTM;
+$labelIndicadores=$labelIndicadores . "| Dólar:$" . $valorDolar;
+if($dolarEsDiaAnterior)
+    $labelIndicadores=$labelIndicadores . "(" . substr($fechaDolar,0,5) . ")";
+$labelIndicadores=$labelIndicadores . "| Euro:$" .  $valorEuro;
+if($euroEsDiaAnterior)
+    $labelIndicadores=$labelIndicadores . "(" . substr($fechaEuro,0,5) . ")";
 
-$labelIndicadores="Fecha: $fechaVisita UF:$ $valorUF  | UTM:$  $valorUTM  | Dólar:$  $valorDolar  | Euro:$ $valorEuro"; 
+
 registraVisita();
 
 ?>
@@ -101,8 +120,8 @@ registraVisita();
                         </div>
                         <div class="col"> 
                             <nav>
-                             <a href="#" class="boton-sel" id="idUF"    onclick="selMoneda('UF');">UF</a>
-                             <a href="#" class="boton-nosel" id="idDolar" onclick="selMoneda('Dolar');">Dolar</a>
+                             <a href="#" class="boton-sel" id="idUF"    onclick="selMoneda('UF');" >UF</a>
+                             <a href="#" class="boton-nosel" id="idDolar" onclick="selMoneda('Dolar');">Dólar</a>
                              <a href="#" class="boton-nosel" id="idEuro"  onclick="selMoneda('Euro');">Euro</a>
                              <a href="#" class="boton-nosel" id="idUTM"   onclick="selMoneda('UTM');" >UTM</a>
                             </nav>    
