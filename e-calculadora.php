@@ -4,7 +4,7 @@
   Autor             : Mauricio Álvarez Bley
   Fecha             : 10-08-2018
   Ult.Modificación  : 13-09-2018
-  Versión           : 1.4
+  Versión           : 1.5
   
   Parametros: Si se utiliza el parametro "act=si" mediante metodo GET, se fuerza a la actualización de los datos
   Ejemplo: www.mabley.cl/calculadora/e-calculadora.php?act=si
@@ -15,7 +15,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', '0');
 
 include "funciones.php";  
-$versionCalculadora="1.4";
+$versionCalculadora="1.5";
 verificaArchivoIndicadoresLocal();
 $fechaIndicadores=date("d-m-Y");
 $forzarActualizacion="no";
