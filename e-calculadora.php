@@ -18,6 +18,7 @@ include "funciones.php";
 $versionCalculadora="1.5";
 verificaArchivoIndicadoresLocal();
 $fechaIndicadores=date("d-m-Y");
+$fechaIndicadoresCompare=date("Y-m-d");
 $forzarActualizacion="no";
 if(isset($_GET['act']))
     $forzarActualizacion=$_GET['act'];
@@ -43,12 +44,14 @@ if (existenIndicadores()!=1 || $forzarActualizacion=="si"){
     $valorUFGuardar=$valorUF;
     $valorUTMGuardar=$valorUTM;   
     
+    //echo $fechaIndicadoresCompare . "=" . $fechaDolar . "<br>";
     
-    if($fechaIndicadores!=$fechaDolar)   {
+    
+    if($fechaIndicadoresCompare!=$fechaDolar)   {
         $dolarEsDiaAnterior=true;
         $valorDolarGuardar="0";
     }
-    if($fechaIndicadores!=$fechaEuro){
+    if($fechaIndicadoresCompare!=$fechaEuro){
         $euroEsDiaAnterior=true;
         $valorEuroGuardar="0";
     }
@@ -80,16 +83,18 @@ $valorUFFormateado=cambiaFormato($valorUF);
 $valorEuroFormateado=cambiaFormato($valorEuro);
 $fechaVisita =date("d-m-y");   
 
+//0123456789
+//yyyy-mm-dd 
 
 $labelIndicadores="Día " . $fechaVisita . "." ;
 $labelIndicadores=$labelIndicadores . " UF:$" . $valorUF;
 $labelIndicadores=$labelIndicadores . "| UTM:$" .  $valorUTM;
 $labelIndicadores=$labelIndicadores . "| Dólar:$" . $valorDolar;
 if($dolarEsDiaAnterior)
-    $labelIndicadores=$labelIndicadores . "(" . substr($fechaDolar,0,5) . ")";
+    $labelIndicadores=$labelIndicadores . "(" . substr($fechaDolar,8,2) . "-". substr($fechaDolar,5,2) . ")";
 $labelIndicadores=$labelIndicadores . "| Euro:$" .  $valorEuro;
 if($euroEsDiaAnterior)
-    $labelIndicadores=$labelIndicadores . "(" . substr($fechaEuro,0,5) . ")";
+    $labelIndicadores=$labelIndicadores . "(" . substr($fechaEuro,8,2) . "-" . substr($fechaEuro,5,2) . ")";
 
 
 registraVisita();
