@@ -84,17 +84,23 @@ $valorEuroFormateado=cambiaFormato($valorEuro);
 $fechaVisita =date("d-m-y");   
 
 //0123456789
-//yyyy-mm-dd 
+//yyyy-mm-dd
+//dd-mm-yy
+
+//echo "Fecha Dolar : " . $fechaDolar . "<br>";
+//echo "Fecha Euro  : " . $fechaEuro . "<br>";
+
+
 
 $labelIndicadores="Día " . $fechaVisita . "." ;
 $labelIndicadores=$labelIndicadores . " UF:$" . $valorUF;
 $labelIndicadores=$labelIndicadores . "| UTM:$" .  $valorUTM;
 $labelIndicadores=$labelIndicadores . "| Dólar:$" . $valorDolar;
 if($dolarEsDiaAnterior)
-    $labelIndicadores=$labelIndicadores . "(" . substr($fechaDolar,8,2) . "-". substr($fechaDolar,5,2) . ")";
+    $labelIndicadores=$labelIndicadores . "(" . substr($fechaDolar,0,2) . "-". substr($fechaDolar,3,2) . ")";
 $labelIndicadores=$labelIndicadores . "| Euro:$" .  $valorEuro;
 if($euroEsDiaAnterior)
-    $labelIndicadores=$labelIndicadores . "(" . substr($fechaEuro,8,2) . "-" . substr($fechaEuro,5,2) . ")";
+    $labelIndicadores=$labelIndicadores . "(" . substr($fechaEuro,0,2) . "-" . substr($fechaEuro,3,2) . ")";
 
 
 registraVisita();
