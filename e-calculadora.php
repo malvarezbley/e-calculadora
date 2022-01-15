@@ -4,109 +4,13 @@
   Autor             : Mauricio Álvarez Bley
   Fecha             : 10-08-2018
   Ult.Modificación  : 28-06-2020
-  Versión           : 1.6
+  Versión           : 1.7
   
   Parametros: Si se utiliza el parametro "act=si" mediante metodo GET, se fuerza a la actualización de los datos
   Ejemplo: www.mabley.cl/calculadora/e-calculadora.php?act=si
   
   */
-
-error_reporting(E_ALL);
-ini_set('display_errors', '0');
-
-include "funciones.php";  
-$versionCalculadora="1.6";
-verificaArchivoIndicadoresLocal();
-$fechaIndicadores=date("d-m-Y");
-$fechaIndicadoresCompare=date("Y-m-d");
-$forzarActualizacion="no";
-if(isset($_GET['act']))
-    $forzarActualizacion=$_GET['act'];
-
-if (existenIndicadores()!=1 || $forzarActualizacion=="si"){
-    //Consulta los indicadores desde los servicios remotos
-    $xml=traeIndicadores_SBIF();
-    //$xml=traeIndicadores_BCentral();
-    //$xml=traeIndicadores_Indicadores();
-
-    $valorDolar=$xml[0][1];
-    $valorEuro=$xml[1][1];      
-    $valorUF=$xml[2][1];
-    $valorUTM=$xml[3][1];   
-
-    $fechaDolar=$xml[0][2];
-    $fechaEuro=$xml[1][2];
-    $fechaUF=$xml[2][2];
-    $fechaUTM=$xml[3][2];
-
-    $valorDolarGuardar=$valorDolar;
-    $valorEuroGuardar=$valorEuro;      
-    $valorUFGuardar=$valorUF;
-    $valorUTMGuardar=$valorUTM;   
-    
-    //echo $fechaIndicadoresCompare . "=" . $fechaDolar . "<br>";
-    
-    
-    if($fechaIndicadoresCompare!=$fechaDolar)   {
-        $dolarEsDiaAnterior=true;
-        $valorDolarGuardar="0";
-    }
-    if($fechaIndicadoresCompare!=$fechaEuro){
-        $euroEsDiaAnterior=true;
-        $valorEuroGuardar="0";
-    }
-    
-    
-    //guardaIndicadores($fechaIndicadores, $valorDolar, $valorEuro, $valorUF, $valorUTM);
-    guardaIndicadores($fechaIndicadores, $valorDolarGuardar, $valorEuroGuardar, $valorUFGuardar, $valorUTMGuardar);
-}
-else{
-    //Rescata los indicadores almacenados localmente
-    $ind=buscaIndicadoresLocales();
-
-    $valorDolar=$ind[0][1];
-    $valorEuro=$ind[1][1];      
-    $valorUF=$ind[2][1];
-    $valorUTM=$ind[3][1];   
-
-    $fechaDolar=$ind[0][2];
-    $fechaEuro=$ind[1][2];
-    $fechaUF=$ind[2][2];
-    $fechaUTM=$ind[3][2];
-
-}
-
-
-$valorDolarFormateado=cambiaFormato($valorDolar);
-$valorUTMFormateado=cambiaFormato($valorUTM);
-$valorUFFormateado=cambiaFormato($valorUF);
-$valorEuroFormateado=cambiaFormato($valorEuro);
-$fechaVisita =date("d-m-y");   
-
-//0123456789
-//yyyy-mm-dd
-//dd-mm-yy
-
-//echo "Fecha Dolar : " . $fechaDolar . "<br>";
-//echo "Fecha Euro  : " . $fechaEuro . "<br>";
-
-
-
-$labelIndicadores="Día " . $fechaVisita . "." ;
-$labelIndicadores=$labelIndicadores . " UF:$" . $valorUF;
-$labelIndicadores=$labelIndicadores . "| UTM:$" .  $valorUTM;
-$labelIndicadores=$labelIndicadores . "| Dólar:$" . $valorDolar;
-if($dolarEsDiaAnterior)
-    $labelIndicadores=$labelIndicadores . "(" . substr($fechaDolar,0,2) . "-". substr($fechaDolar,3,2) . ")";
-$labelIndicadores=$labelIndicadores . "| Euro:$" .  $valorEuro;
-if($euroEsDiaAnterior)
-    $labelIndicadores=$labelIndicadores . "(" . substr($fechaEuro,0,2) . "-" . substr($fechaEuro,3,2) . ")";
-
-
-registraVisita();
-
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -115,10 +19,224 @@ registraVisita();
         <!-- <meta name="viewport" content="width=device-width, inicial-scale=1.0"> -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/e-calculadora.css">  
+        <link rel="stylesheet" href="css/e-calculadora.css"> 
         <script src="js/e-calculadora.js"></script>
+
+        <style>
+
+            .ocultarPreload{
+                overflow:hidden;
+            }
+
+            .preload{
+                /*height:100vh;*/
+                display:flex;
+                justify-content: center;   
+                align-items: center;
+                color:white;
+            }
+
+
+            .lds-spinner {
+                color: official;
+                display: inline-block;
+                position: relative;
+                width: 80px;
+                height: 80px;
+            }
+            .lds-spinner div {
+                transform-origin: 40px 40px;
+                animation: lds-spinner 1.2s linear infinite;
+            }
+            .lds-spinner div:after {
+                content: " ";
+                display: block;
+                position: absolute;
+                top: 3px;
+                left: 37px;
+                width: 6px;
+                height: 18px;
+                border-radius: 20%;
+                background: #fff;
+            }
+            .lds-spinner div:nth-child(1) {
+                transform: rotate(0deg);
+                animation-delay: -1.1s;
+            }
+            .lds-spinner div:nth-child(2) {
+                transform: rotate(30deg);
+                animation-delay: -1s;
+            }
+            .lds-spinner div:nth-child(3) {
+                transform: rotate(60deg);
+                animation-delay: -0.9s;
+            }
+            .lds-spinner div:nth-child(4) {
+                transform: rotate(90deg);
+                animation-delay: -0.8s;
+            }
+            .lds-spinner div:nth-child(5) {
+                transform: rotate(120deg);
+                animation-delay: -0.7s;
+            }
+            .lds-spinner div:nth-child(6) {
+                transform: rotate(150deg);
+                animation-delay: -0.6s;
+            }
+            .lds-spinner div:nth-child(7) {
+                transform: rotate(180deg);
+                animation-delay: -0.5s;
+            }
+            .lds-spinner div:nth-child(8) {
+                transform: rotate(210deg);
+                animation-delay: -0.4s;
+            }
+            .lds-spinner div:nth-child(9) {
+                transform: rotate(240deg);
+                animation-delay: -0.3s;
+            }
+            .lds-spinner div:nth-child(10) {
+                transform: rotate(270deg);
+                animation-delay: -0.2s;
+            }
+            .lds-spinner div:nth-child(11) {
+                transform: rotate(300deg);
+                animation-delay: -0.1s;
+            }
+            .lds-spinner div:nth-child(12) {
+                transform: rotate(330deg);
+                animation-delay: 0s;
+            }
+            @keyframes lds-spinner {
+                0% {
+                opacity: 1;
+                }
+                100% {
+                opacity: 0;
+                }
+            }
+
+        </style>
+
+
     </head>
-    <body>
+
+    <body class="ocultarPreload"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+        <div class="preload" id="onloadCarga"> 
+            <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p>Actualizando tasas...</p>
+        </div>  
+<?php
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', '0');
+
+    include "funciones.php";  
+    $versionCalculadora="1.7";
+    verificaArchivoIndicadoresLocal();
+    $fechaIndicadores=date("d-m-Y");
+    $fechaIndicadoresCompare=date("Y-m-d");
+    $forzarActualizacion="no";
+    if(isset($_GET['act']))
+        $forzarActualizacion=$_GET['act'];
+
+    if (existenIndicadores()!=1 || $forzarActualizacion=="si"){
+        //Consulta los indicadores desde los servicios remotos
+        $xml=traeIndicadores_SBIF();
+        //$xml=traeIndicadores_BCentral();
+        //$xml=traeIndicadores_Indicadores();
+
+        $valorDolar=$xml[0][1];
+        $valorEuro=$xml[1][1];      
+        $valorUF=$xml[2][1];
+        $valorUTM=$xml[3][1];   
+
+        $fechaDolar=$xml[0][2];
+        $fechaEuro=$xml[1][2];
+        $fechaUF=$xml[2][2];
+        $fechaUTM=$xml[3][2];
+
+        $valorDolarGuardar=$valorDolar;
+        $valorEuroGuardar=$valorEuro;      
+        $valorUFGuardar=$valorUF;
+        $valorUTMGuardar=$valorUTM;   
+        
+        //echo $fechaIndicadoresCompare . "=" . $fechaDolar . "<br>";
+        
+        
+        if($fechaIndicadoresCompare!=$fechaDolar)   {
+            $dolarEsDiaAnterior=true;
+            $valorDolarGuardar="0";
+        }
+        if($fechaIndicadoresCompare!=$fechaEuro){
+            $euroEsDiaAnterior=true;
+            $valorEuroGuardar="0";
+        }
+        
+        
+        //guardaIndicadores($fechaIndicadores, $valorDolar, $valorEuro, $valorUF, $valorUTM);
+        guardaIndicadores($fechaIndicadores, $valorDolarGuardar, $valorEuroGuardar, $valorUFGuardar, $valorUTMGuardar);
+    }
+    else{
+        //Rescata los indicadores almacenados localmente
+        $ind=buscaIndicadoresLocales();
+
+        $valorDolar=$ind[0][1];
+        $valorEuro=$ind[1][1];      
+        $valorUF=$ind[2][1];
+        $valorUTM=$ind[3][1];   
+
+        $fechaDolar=$ind[0][2];
+        $fechaEuro=$ind[1][2];
+        $fechaUF=$ind[2][2];
+        $fechaUTM=$ind[3][2];
+
+    }
+
+
+    $valorDolarFormateado=cambiaFormato($valorDolar);
+    $valorUTMFormateado=cambiaFormato($valorUTM);
+    $valorUFFormateado=cambiaFormato($valorUF);
+    $valorEuroFormateado=cambiaFormato($valorEuro);
+    $fechaVisita =date("d-m-y");   
+
+    //0123456789
+    //yyyy-mm-dd
+    //dd-mm-yy
+
+    //echo "Fecha Dolar : " . $fechaDolar . "<br>";
+    //echo "Fecha Euro  : " . $fechaEuro . "<br>";
+
+
+
+    $labelIndicadores="Día " . $fechaVisita . "." ;
+    $labelIndicadores=$labelIndicadores . " UF:$" . $valorUF;
+    $labelIndicadores=$labelIndicadores . "| UTM:$" .  $valorUTM;
+    $labelIndicadores=$labelIndicadores . "| Dólar:$" . $valorDolar;
+    if($dolarEsDiaAnterior)
+        $labelIndicadores=$labelIndicadores . "(" . substr($fechaDolar,0,2) . "-". substr($fechaDolar,3,2) . ")";
+    $labelIndicadores=$labelIndicadores . "| Euro:$" .  $valorEuro;
+    if($euroEsDiaAnterior)
+        $labelIndicadores=$labelIndicadores . "(" . substr($fechaEuro,0,2) . "-" . substr($fechaEuro,3,2) . ")";
+
+    registraVisita();
+
+?>
+
         <h1 class="titulo-contenedor">Calculadora de Indicadores Económicos</h1>
           <div class="container contenedor-calculadora">
                 <header>
@@ -199,5 +317,16 @@ registraVisita();
           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+          <!-- <script src="js/ocultar.js"></script>  -->
+
+         <script>
+            window.onload = function(){
+            //alert("Terminó de cargar...");
+            $(".preload").css({visibility:"hidden", opacity:"0"})
+            var miDiv = document.getElementById('onloadCarga');
+            miDiv.parentNode.removeChild(miDiv);
+            }        
+        </script> 
+
     </body>
 </html>
