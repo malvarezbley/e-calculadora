@@ -3,8 +3,8 @@
   Programa          : Calculadora de Indicadores Economicos
   Autor             : Mauricio Álvarez Bley
   Fecha             : 10-08-2018
-  Ult.Modificación  : 28-06-2020
-  Versión           : 1.7
+  Ult.Modificación  : 16-01-2022
+  Versión           : 1.7.1
   
   Parametros: Si se utiliza el parametro "act=si" mediante metodo GET, se fuerza a la actualización de los datos
   Ejemplo: www.mabley.cl/calculadora/e-calculadora.php?act=si
@@ -17,112 +17,13 @@
         <meta charset="UTF-8">
         <title>Calculadora de Indicadores Económicos</title>
         <!-- <meta name="viewport" content="width=device-width, inicial-scale=1.0"> -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/e-calculadora.css"> 
-        <script src="js/e-calculadora.js"></script>
-
+        
         <style>
-
-            .ocultarPreload{
-                overflow:hidden;
-            }
-
-            .preload{
-                /*height:100vh;*/
-                display:flex;
-                justify-content: center;   
-                align-items: center;
-                color:white;
-            }
-
-
-            .lds-spinner {
-                color: official;
-                display: inline-block;
-                position: relative;
-                width: 80px;
-                height: 80px;
-            }
-            .lds-spinner div {
-                transform-origin: 40px 40px;
-                animation: lds-spinner 1.2s linear infinite;
-            }
-            .lds-spinner div:after {
-                content: " ";
-                display: block;
-                position: absolute;
-                top: 3px;
-                left: 37px;
-                width: 6px;
-                height: 18px;
-                border-radius: 20%;
-                background: #fff;
-            }
-            .lds-spinner div:nth-child(1) {
-                transform: rotate(0deg);
-                animation-delay: -1.1s;
-            }
-            .lds-spinner div:nth-child(2) {
-                transform: rotate(30deg);
-                animation-delay: -1s;
-            }
-            .lds-spinner div:nth-child(3) {
-                transform: rotate(60deg);
-                animation-delay: -0.9s;
-            }
-            .lds-spinner div:nth-child(4) {
-                transform: rotate(90deg);
-                animation-delay: -0.8s;
-            }
-            .lds-spinner div:nth-child(5) {
-                transform: rotate(120deg);
-                animation-delay: -0.7s;
-            }
-            .lds-spinner div:nth-child(6) {
-                transform: rotate(150deg);
-                animation-delay: -0.6s;
-            }
-            .lds-spinner div:nth-child(7) {
-                transform: rotate(180deg);
-                animation-delay: -0.5s;
-            }
-            .lds-spinner div:nth-child(8) {
-                transform: rotate(210deg);
-                animation-delay: -0.4s;
-            }
-            .lds-spinner div:nth-child(9) {
-                transform: rotate(240deg);
-                animation-delay: -0.3s;
-            }
-            .lds-spinner div:nth-child(10) {
-                transform: rotate(270deg);
-                animation-delay: -0.2s;
-            }
-            .lds-spinner div:nth-child(11) {
-                transform: rotate(300deg);
-                animation-delay: -0.1s;
-            }
-            .lds-spinner div:nth-child(12) {
-                transform: rotate(330deg);
-                animation-delay: 0s;
-            }
-            @keyframes lds-spinner {
-                0% {
-                opacity: 1;
-                }
-                100% {
-                opacity: 0;
-                }
-            }
-
+            .ocultarPreload{overflow:hidden}.preload{height:100vh;display:flex;justify-content:center;align-items:center;color:#fff}.lds-spinner{color:official;display:inline-block;position:relative;width:80px;height:80px}.lds-spinner div{transform-origin:40px 40px;animation:lds-spinner 1.2s linear infinite}.lds-spinner div:after{content:" ";display:block;position:absolute;top:3px;left:37px;width:6px;height:18px;border-radius:20%;background:#fff}.lds-spinner div:nth-child(1){transform:rotate(0deg);animation-delay:-1.1s}.lds-spinner div:nth-child(2){transform:rotate(30deg);animation-delay:-1s}.lds-spinner div:nth-child(3){transform:rotate(60deg);animation-delay:-.9s}.lds-spinner div:nth-child(4){transform:rotate(90deg);animation-delay:-.8s}.lds-spinner div:nth-child(5){transform:rotate(120deg);animation-delay:-.7s}.lds-spinner div:nth-child(6){transform:rotate(150deg);animation-delay:-.6s}.lds-spinner div:nth-child(7){transform:rotate(180deg);animation-delay:-.5s}.lds-spinner div:nth-child(8){transform:rotate(210deg);animation-delay:-.4s}.lds-spinner div:nth-child(9){transform:rotate(240deg);animation-delay:-.3s}.lds-spinner div:nth-child(10){transform:rotate(270deg);animation-delay:-.2s}.lds-spinner div:nth-child(11){transform:rotate(300deg);animation-delay:-.1s}.lds-spinner div:nth-child(12){transform:rotate(330deg);animation-delay:0}@keyframes lds-spinner{0%{opacity:1}100%{opacity:0}}
         </style>
-
-
     </head>
 
-    <body class="ocultarPreload"> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+    <body > 
         <div class="preload" id="onloadCarga"> 
             <div class="lds-spinner">
                 <div></div>
@@ -140,6 +41,13 @@
             </div>
             <p>Actualizando tasas...</p>
         </div>  
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/e-calculadora.css"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+        <script src="js/e-calculadora.js"></script>
+
 <?php
 
     error_reporting(E_ALL);
@@ -321,7 +229,10 @@
 
          <script>
             window.onload = function(){
-            //alert("Terminó de cargar...");
+                $cont=0;
+                for ($cont=1;$cont<=900000000;$cont++)
+                {}
+            //alert("Terminó de cargar..." + $cont);
             $(".preload").css({visibility:"hidden", opacity:"0"})
             var miDiv = document.getElementById('onloadCarga');
             miDiv.parentNode.removeChild(miDiv);
