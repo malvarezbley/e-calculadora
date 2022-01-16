@@ -54,7 +54,7 @@
     ini_set('display_errors', '0');
 
     include "funciones.php";  
-    $versionCalculadora="1.7";
+    $versionCalculadora="1.7.1";
     verificaArchivoIndicadoresLocal();
     $fechaIndicadores=date("d-m-Y");
     $fechaIndicadoresCompare=date("Y-m-d");
@@ -229,9 +229,9 @@
 
          <script>
             window.onload = function(){
-                $cont=0;
+                /*$cont=0;
                 for ($cont=1;$cont<=900000000;$cont++)
-                {}
+                {}*/
             //alert("Terminó de cargar..." + $cont);
             $(".preload").css({visibility:"hidden", opacity:"0"})
             var miDiv = document.getElementById('onloadCarga');
