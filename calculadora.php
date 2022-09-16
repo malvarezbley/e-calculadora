@@ -2,8 +2,8 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">	
-		<title>Calculadora de Indicadores Económicos....</title>
-		<link rel="stylesheet" href="sdsdcss/estilos_mab.css">
+		<title>Calculadora de Indicadores Económicos....!!</title>
+		<link rel="stylesheet" href="css/estilos_mab.css">
 	</head>
 
 
