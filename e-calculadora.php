@@ -3,8 +3,8 @@
   Programa          : Calculadora de Indicadores Economicos
   Autor             : Mauricio Álvarez Bley
   Fecha             : 10-08-2018
-  Ult.Modificación  : 16-01-2022
-  Versión           : 1.7.1
+  Ult.Modificación  : 15-09-2022
+  Versión           : 1.7.2
   
   Parametros: Si se utiliza el parametro "act=si" mediante metodo GET, se fuerza a la actualización de los datos
   Ejemplo: www.mabley.cl/calculadora/e-calculadora.php?act=si
@@ -53,8 +53,11 @@
     error_reporting(E_ALL);
     ini_set('display_errors', '0');
 
+    $dolarEsDiaAnterior = false;
+    $euroEsDiaAnterior = false;
+
     include "funciones.php";  
-    $versionCalculadora="1.7.1";
+    $versionCalculadora="1.7.2";
     verificaArchivoIndicadoresLocal();
     $fechaIndicadores=date("d-m-Y");
     $fechaIndicadoresCompare=date("Y-m-d");
